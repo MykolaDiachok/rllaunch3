@@ -1,10 +1,114 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>RadioLine Launch</title>
+
+    <!--build:css css/vendor.min.css-->
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!--<link rel="stylesheet" href="../node_modules/angular-material/angular-material.min.css">-->
+
+    <!--endbuild-->
+    <!--build:css css/styles.min.css-->
+    <link rel="stylesheet" href="styles/main.css">
+    <!--endbuild-->
 </head>
 <body>
+<div ng-app="launchrlApp" ng-controller="LaunchRLCtrl">
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                        data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">RadioLine</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav nav-tabs" ng-if="firebaseUser">
+                    <li class="active"><a data-toggle="tab" href="#home">Обеды</a></li>
+                    <li><a data-toggle="tab" href="#users">Пользователи</a></li>
+                    <li><a data-toggle="tab" href="#menu">Меню</a></li>
+                    <li><a data-toggle="tab" href="#meals">Блюда</a></li>
+                </ul>
+
+
+                <form class="navbar-form navbar-left form-inline" ng-if="!firebaseUser">
+                    <div class="form-group">
+                        <label class="sr-only" for="InputEmail">Email address</label>
+                        <input ng-model="user.email" type="email" class="form-control" id="InputEmail"
+                               placeholder="Email" required autofocus>
+                    </div>
+                    <div class="form-group">
+                        <label class="sr-only" for="InputPassword">Password</label>
+                        <input ng-model="user.password" type="password" class="form-control" id="InputPassword"
+                               placeholder="Password" required>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input ng-model="user.remember" type="checkbox"> Remember me
+                        </label>
+                    </div>
+                    <button type="submit" class="btn btn-default" ng-click="signIn(user)">Sign in</button>
+                </form>
+
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="container theme-showcase" role="main">
+        <div class="tab-content" ng-if="firebaseUser">
+            <div id="home" class="tab-pane fade in active">
+                <div class="jumbotron">
+                    <h3>Обеды</h3>
+                    <!--<p>Список обедов</p>-->
+                </div>
+            </div>
+            <div id="users" class="tab-pane fade">
+                <div class="jumbotron">
+                    <h3>Список сотрудников</h3>
+                    <!--<p>Some content in menu 1.</p>-->
+                </div>
+            </div>
+            <div id="menu" class="tab-pane fade">
+                <div class="jumbotron">
+                    <h3>Администрирование обедов</h3>
+                    <!--<p>Some content in menu 2.</p>-->
+                </div>
+            </div>
+            <div id="meals" class="tab-pane fade">
+                <div class="jumbotron">
+                    <h3>Блюда</h3>
+                    <!--<p>Список блюд</p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<!--build:js js/vendor.min.js -->
+<script src="../node_modules/jquery/dist/jquery.min.js"></script>
+<script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="../node_modules/angular/angular.min.js"></script>
+<script src="../node_modules/angular-cookies/angular-cookies.min.js"></script>
+<!-- Firebase -->
+<script src="../node_modules/firebase/firebase.js"></script>
+<!-- AngularFire -->
+<script src="../node_modules/angularfire/dist/angularfire.min.js"></script>
+<!-- endbuild -->
+
+<!--build:js js/main.min.js -->
+<script src="scripts/app.js"></script>
+<!-- endbuild -->
 
 </body>
 </html>
